@@ -26,3 +26,38 @@ p {
     align-self: center;
     font-size: 0.875rem;
 }
+
+.status {
+    text-align: center;
+    background-color: #10a95b;
+    border-radius: 5px;
+    padding: 5px;
+    width: 350px;
+    margin-block: 30px 30px;
+}
+
+.status > h3 {
+    margin: 10px 0px 0px 0px;
+    color: #f0ebd2;
+    text-align: center;
+    font-weight: 300;
+}
+
+.status > h2 {
+    margin: 0px 0px 0px 0px;
+    font-weight: 500;
+}
+
+.chip-container {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 350px;
+    justify-content: center;
+}
+
+.chip {
+    padding: 3px;
+    margin: 1px 2px 1px 2px;
+    border-radius: 2px;
+    font-size: 0.92rem;
+}
