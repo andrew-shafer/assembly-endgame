@@ -109,12 +109,20 @@ p {
     cursor: pointer;
 }
 
-.keyboard > button:hover {
+.keyboard > button[class='key']:hover {
     background-color: #c28e20;
 }
 
-.keyboard > button:active {
+.keyboard > button[class='key']:active {
     background-color: #745511;
+}
+
+button[class*='Correct'] {
+    background-color: #10A95B;
+}
+
+button[class*='Incorrect'] {
+    background-color: #EC5D49;
 }
 
 button.new-game {

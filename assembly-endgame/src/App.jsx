@@ -1,5 +1,6 @@
 import { useState } from "react"
 import {languages} from "./assets/languages.js"
+import clsx from "clsx"
 import Chip from "./components/Chip.jsx"
 
 /**
@@ -21,6 +22,7 @@ import Chip from "./components/Chip.jsx"
  * 
  */
 
+
 export default function Hangman() {
     function getChipArray() {
         return languages.map(language => (
@@ -32,16 +34,31 @@ export default function Hangman() {
         ))
     }
 
+    function clickKey(key) {
+        setUsedLetters(prevLetters => 
+            prevLetters.includes(key) ? prevLetters : [...prevLetters, key])
+    }
+
     const [chips, setChips] = useState(getChipArray());
     const [word, setWord] = useState("react");
     const alphabet = "abcdefghijklmnopqrstuvwxyz";
+    const [usedLetters, setUsedLetters] = useState([]);
+    console.log(usedLetters)
 
     const wordArray = word.split("").map((letter, index) => {
         return <span key={index} className="word-letter">{letter.toUpperCase()}</span>
     });
 
     const keyboardArray = alphabet.split("").map(key => {
-        return <button key={key}>{key.toUpperCase()}</button>
+        return <button key={key} 
+                        className={clsx('key', {
+                            "Incorrect": usedLetters.includes(key) && !word.includes(key),
+                            "Correct": usedLetters.includes(key) && word.includes(key)
+                        })}
+                        onClick={() => clickKey(key)}>
+                    {key.toUpperCase()}
+                </button>
+
     });
 
     return (
