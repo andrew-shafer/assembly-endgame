@@ -1,7 +1,6 @@
 import { useState } from "react"
 import {languages} from "./assets/languages.js"
 import clsx from "clsx"
-import Chip from "./components/Chip.jsx"
 
 /**
  * Project planning:
@@ -24,30 +23,38 @@ import Chip from "./components/Chip.jsx"
 
 
 export default function Hangman() {
-    function getChipArray() {
-        return languages.map(language => (
-            <Chip name={language.name}
-                  backgroundColor={language.backgroundColor}
-                  color={language.color}
-                  key={language.name}
-            />
-        ))
-    }
+    const [word, setWord] = useState("react");
+    const [usedLetters, setUsedLetters] = useState([]);
+
+    const wrongGuessCount = usedLetters.filter(l => !word.includes(l)).length;
+    const isGameOver = wrongGuessCount >= languages.length-1;
+    const alphabet = "abcdefghijklmnopqrstuvwxyz";
+
+    const chips = languages.map((lang, index) => {
+        const isLanguageLost = index < wrongGuessCount;
+        const styles = {
+            backgroundColor: lang.backgroundColor,
+            color: lang.color
+        }
+        return (
+            <span
+                className={`chip${isLanguageLost ? " lost" : ""}`}
+                style={styles}
+                key={lang.name}
+            >
+                {lang.name}
+            </span>
+        )
+    })
+
+    const wordArray = word.split("").map((letter, index) => {
+        return <span key={index} className="word-letter">{usedLetters.includes(letter) ? letter.toUpperCase() : ""}</span>
+    });
 
     function clickKey(key) {
         setUsedLetters(prevLetters => 
             prevLetters.includes(key) ? prevLetters : [...prevLetters, key])
     }
-
-    const [chips, setChips] = useState(getChipArray());
-    const [word, setWord] = useState("react");
-    const alphabet = "abcdefghijklmnopqrstuvwxyz";
-    const [usedLetters, setUsedLetters] = useState([]);
-    console.log(usedLetters)
-
-    const wordArray = word.split("").map((letter, index) => {
-        return <span key={index} className="word-letter">{letter.toUpperCase()}</span>
-    });
 
     const keyboardArray = alphabet.split("").map(key => {
         return <button key={key} 
@@ -78,7 +85,7 @@ export default function Hangman() {
             <section className="keyboard">
                 {keyboardArray}
             </section>
-            <button className="new-game">New Game</button>
+            {isGameOver && <button className="new-game">New Game</button>}
         </main>
     )
 }

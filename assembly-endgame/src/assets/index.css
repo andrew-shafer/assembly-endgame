@@ -4,7 +4,7 @@
 
 body {
     margin: 0;
-    font-family: "Hanken Grotesk", Arial, sans-serif;
+    font-family: "Hanken Grotesk", Arial, sans-serif;    
     background-color: #262626;
     color: #D9D9D9;
     padding: 20px;
@@ -66,6 +66,23 @@ p {
     margin: 1px 2px 1px 2px;
     border-radius: 2px;
     font-size: 0.92rem;
+    position: relative;
+}
+
+.chip.lost::before {
+    content: "\1F480";
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    border-radius: 2px;
+    font-size: 0.85rem;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.7);
 }
 
 .word-field {
