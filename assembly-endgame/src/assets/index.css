@@ -35,11 +35,40 @@ p {
 
 .status {
     text-align: center;
+    border-radius: 5px;
+    padding: 5px;
+    width: 350px;
+    margin-block: 30px 30px;
+}
+
+.status.won {
+    text-align: center;
     background-color: #10a95b;
     border-radius: 5px;
     padding: 5px;
     width: 350px;
     margin-block: 30px 30px;
+}
+
+.status.lost {
+    text-align: center;
+    background-color: #BA2A2A;
+    border-radius: 5px;
+    padding: 5px;
+    width: 420px;
+    margin-block: 30px 30px;
+}
+
+.status.incorrect {
+    text-align: center;
+    background-color: purple;
+    border-radius: 5px;
+    padding: 5px;
+    width: 420px;
+    margin-block: 30px 30px;
+    border: dashed;
+    display: flex;
+    justify-content: center;
 }
 
 .status > h3 {
@@ -52,6 +81,19 @@ p {
 .status > h2 {
     margin: 0px 0px 0px 0px;
     font-weight: 500;
+}
+
+.status.incorrect {
+    background-color: #7A5EA7;
+    border: 1px dashed #323232;
+    font-style: italic;
+    font-weight: 400;
+}
+
+p.farewell-message {
+    font-style: italic;
+    font-weight: 400;
+    color: white;
 }
 
 .chip-container {
@@ -104,6 +146,17 @@ p {
     font-size: 1.125rem;
 }
 
+.letter-not-guessed {
+    color: #ece7ce;
+    margin: 0px 1px 0px 1px;
+    padding: 10px;
+    border-bottom: 2px solid #949285;
+    height: 40px;
+    width: 40px;
+    font-size: 1.125rem;
+    background-color: #EC5D49;
+}
+
 .keyboard {
     display: flex;
     flex-wrap: wrap;
@@ -140,6 +193,12 @@ button[class*='Correct'] {
 
 button[class*='Incorrect'] {
     background-color: #EC5D49;
+}
+
+button[class='key Disabled'] {
+    background-color: lightgray;
+    cursor: not-allowed;
+    opacity: 0.5
 }
 
 button.new-game {
